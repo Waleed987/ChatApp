@@ -71,13 +71,18 @@ function Chat({socket,name,room,setshowChat}){
                                         : "bg-white border border-slate-200 text-slate-800 rounded-bl-md"
                                 }`}>
                                     <p className="text-sm leading-relaxed">{msg.message}</p>
+                                    
+
                                     <div className={`text-xs mt-1 ${
                                         msg.author === name ? "text-blue-100" : "text-slate-500"
                                     }`}>
-                                        {msg.time}
+                                        <p className={`${msg.author===name ? 'text-right':'text-left'}`}>{msg.time}</p>
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
+                            
                         );
                     })}
                 </div>
