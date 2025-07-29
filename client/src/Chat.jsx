@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Send, MessageCircle } from "lucide-react";
+import { X,Send, MessageCircle } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
-function Chat({socket,name,room}){
+function Chat({socket,name,room,setshowChat}){
     const [message,setMessage] = useState("");
     const [msgList ,setmsgList] = useState([]);
 
@@ -36,11 +37,16 @@ function Chat({socket,name,room}){
         }
     }, [socket]);
     
-   
+    const closeButton = ()=>{
+        console.log("close button clicked");
+        setshowChat(false);
+    }
+
     return(
         <>
             <div className="flex flex-col mt-12 bg-gradient-to-br from-slate-50 to-slate-100 h-[600px] w-[400px] border border-slate-200 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-sm">
                 <div className="chat-header h-16 w-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center relative">
+                    <X color="white" className="z-20 absolute top-[10px] left-[10px]" onClick={closeButton}/>
                     <div className="absolute inset-0 bg-black/10"></div>
                     <div className="flex items-center gap-2 relative z-10">
                         <MessageCircle className="text-white" size={20} />
